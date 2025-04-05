@@ -1,6 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Sisusa.Common.ReturnTypes;
+using Sisusa.Common.ReturnTypes.Tests;
+
+using FailureOrUserTest = Sisusa.Common.ReturnTypes.FailureOr<Sisusa.Common.ReturnTypes.Tests.UserTest>;
 
 namespace Sisusa.Common.Tests.ReturnTypes
 {
@@ -217,6 +220,51 @@ namespace Sisusa.Common.Tests.ReturnTypes
 
             // Assert
             Assert.IsTrue(errorHandled);
+        }
+
+        [TestMethod]
+        public void TestThatImplicitOperatorWithFailureWorksWell()
+        {
+            var msg = "Operation failed.";
+            var failure = (FailureOr<UserTest>)FailureInfo.WithMessage(msg);
+
+            failure.Match(u =>
+            {
+                Assert.Fail("Error converted to success!");
+            }, e =>
+            {
+                Assert.AreEqual(e.Message, msg);
+            });
+        }
+
+        [TestMethod]
+        public void TestThatImplicitOperatorWithFailureInfoWorksWell()
+        {
+            var msg = "Operation failed.";
+            var failureInfo = (FailureOr<UserTest>)new FailureInfo(msg);
+            failureInfo.Match(u =>
+            {
+                Assert.Fail("Error converted to success!");
+            }, e =>
+            {
+                Assert.AreEqual(e.Message, msg);
+            });
+        }
+
+        [TestMethod]
+        public void TestThatImplicitOperatorWorksWithTypeAlias()
+        {
+            var msg = "User not found";
+            var err = FailureInfo.WithMessage(msg);
+            var failure = FailureOrUserTest.Fail(err);
+
+            failure.Match(u =>
+            {
+                Assert.Fail("Error! Failure was converted to user.");
+            }, e =>
+            {
+                Assert.AreEqual(e.Message, msg);
+            });
         }
     }
 }

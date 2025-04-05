@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sisusa.Common.ReturnTypes.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7dd93ab8f494858ccb137b644810d2f5d56c2c83")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sisusa.Common.ReturnTypes.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sisusa.Common.ReturnTypes.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
